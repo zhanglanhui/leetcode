@@ -29,8 +29,20 @@ def insertionSort(alist):
     return ret
 
 
+# 插入排序（示例代码）
+def insertionSort2(alist):
+    for i in range(1, len(alist)):
+        currentvalue = alist[i]
+        position = i
+        while alist[position - 1] > currentvalue and position > 0:
+            alist[position] = alist[position - 1]
+            position = position - 1
+        alist[position] = currentvalue
+    return alist
+
+
 l = generateRandomArray(10, 1, 1000)
 print("before sort:", l)
-ret = insertionSort(l)
+ret = insertionSort2(l)
 print("sorted:", ret)
-testSort(insertionSort, l)
+testSort(insertionSort2, l)
