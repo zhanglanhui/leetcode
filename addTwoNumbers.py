@@ -38,4 +38,4 @@ class Solution1:
         return re.next
 
 
-print(Solution1.addTwoNumbers([2, 4, 3], [5, 6, 4]))
+print(Solution1().addTwoNumbers([2, 4, 3], [5, 6, 4]))
