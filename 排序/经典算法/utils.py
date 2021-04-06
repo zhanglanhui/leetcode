@@ -1,4 +1,5 @@
 # coding=utf-8
+# 不稳定排序：快选希堆（快速排序，选择排序，希尔排序，堆排序）
 from random import randint
 import timeit
 
@@ -27,8 +28,8 @@ def isSorted(alist):
     return True
 
 
-t1 = timeit.Timer('testSort("某种排序算法函数", alist)', 'from __main__ import testSort, 某种排序算法函数, alist')
-print('某种排序算法：%s s' % t1.timeit(number=1))
+# t1 = timeit.Timer('testSort("某种排序算法函数", alist)', 'from __main__ import testSort, 某种排序算法函数, alist')
+# print('某种排序算法：%s s' % t1.timeit(number=1))
 
 
 # func表示要检测的算法函数，alist为传入的数列
