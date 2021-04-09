@@ -3,6 +3,9 @@ from typing import List
 import functools
 
 
+
+
+
 class Solution:
-    def sortArray(self, nums: List[int]) -> List[int]:
+    def smallestK(self, arr: List[int], k: int) -> List[int]:
         pass
