@@ -1,5 +1,4 @@
 # coding=utf-8
-# 不稳定排序：快选希堆（快速排序，选择排序，希尔排序，堆排序）
 from random import randint
 import timeit
 
