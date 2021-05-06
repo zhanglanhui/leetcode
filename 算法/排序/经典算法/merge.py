@@ -12,29 +12,29 @@ from utils import *
 # 自顶向下（递归法）方法实现
 # 归并排序
 # TODO:注意：这里进行小的优化，当数列的长度小于等于15的时候，我们一般认为数列此时基本有序，这时候采用直接插入排序非常快。
-def mergeSort(alist):
-    n = len(alist)
-    __mergeSort(alist, 0, n - 1)
-    return alist
+def mergeSort(nums):
+    n = len(nums)
+    __mergeSort(nums, 0, n - 1)
+    return nums
 
 
 # 对arr[l...r]的范围进行排序
-def __mergeSort(alist, start, end):
-    # 当数列的大小比较小的时候，数列近乎有序的概率较大
-    if (end - start <= 15):
-        insertionSortHelp(alist, start, end)
+def __mergeSort(nums, l, r):
+    if l >= r:
         return
-
-    if start >= end:
-        return
-    # 存在风险，start+end可能越界
-    mid = (start + end) // 2
-    # mid = start + (end - start) // 2
-    __mergeSort(alist, start, mid)
-    __mergeSort(alist, mid + 1, end)
-    # 优化
-    if alist[mid] > alist[mid + 1]:
-        merge(alist, start, mid, end)
+    mid = (l + r) // 2
+    __mergeSort(nums, l, mid)
+    __mergeSort(nums, mid + 1, r)
+    tmp = []
+    i, j = l, mid + 1
+    while i <= mid or j <= r:
+        if i > mid or (j <= r and nums[j] < nums[i]):
+            tmp.append(nums[j])
+            j += 1
+        else:
+            tmp.append(nums[i])
+            i += 1
+    nums[l: r + 1] = tmp
 
 
 # 合并有序数列alist[start....mid] 和 alist[mid+1...end]，使之成为有序数列
@@ -44,7 +44,6 @@ def merge(alist, start, mid, end):
     l = start
     k = mid + 1
     pos = start
-
     while pos <= end:
         if (l > mid):
             alist[pos] = blist[k - start]
@@ -59,17 +58,6 @@ def merge(alist, start, mid, end):
             alist[pos] = blist[k - start]
             k += 1
         pos += 1
-
-
-def insertionSortHelp(alist, l, r):
-    for i in range(l + 1, r + 1):
-        currentvalue = alist[i]
-        position = i
-        while alist[position - 1] > currentvalue and position > l:
-            alist[position] = alist[position - 1]
-            position = position - 1
-        alist[position] = currentvalue
-    return alist
 
 
 # ---------------------------------------------------------
@@ -88,6 +76,6 @@ def mergeBU(alist):
 
 l = generateRandomArray(100, 1, 1000)
 print("before sort:", l)
-ret = mergeBU(l)
+ret = mergeSort(l)
 print("sorted:", ret)
-testSort(mergeBU, l)
+testSort(mergeSort, l)

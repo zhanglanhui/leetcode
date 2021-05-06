@@ -46,6 +46,7 @@ class Solution1:
             return l1
 
 
+# 直接法
 class Solution2:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         pre_node = ListNode(-1)
