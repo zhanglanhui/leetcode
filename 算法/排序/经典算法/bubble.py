@@ -3,6 +3,7 @@ from typing import List
 import functools
 from utils import *
 
+
 # 冒泡排序要对一个列表多次重复遍历。它要比较相邻的两项，并且交换顺序排错的项。每对 列表实行一次遍历，
 # 就有一个最大项排在了正确的位置。大体上讲，列表的每一个数据项都会在 其相应的位置 “冒泡”。
 # 如果列表有 n 项，第一次遍历就要比较 n-1 对数据。需要注意，
@@ -46,7 +47,15 @@ def bubbleSort3(arr):
     return arr
 
 
+def bubbleSort4(arr):
+    for i in range(0, len(arr)):
+        for j in range(len(arr)-1, i, -1):
+            if arr[j - 1] > arr[j]:
+                arr[j], arr[j - 1] = arr[j - 1], arr[j]
+    return arr
+
+
 l = generateRandomArray(100, 1, 1000)
-bubbleSort3(l)
+bubbleSort2(l)
 print(l)
 testSort(bubbleSort3, l)

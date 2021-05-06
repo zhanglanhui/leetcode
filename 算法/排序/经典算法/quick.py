@@ -29,8 +29,8 @@ def __quickSort(alist, l, r):
 
 # 在alist[l...r]中寻找j,使得alist[l...j] <= alist[l], alist[j+1...r] >alist[l]
 def partition(alist, l, r):
-    pos = randint(l, r)
-    alist[pos], alist[l] = alist[l], alist[pos]
+    pivot = randint(l, r)
+    alist[pivot], alist[l] = alist[l], alist[pivot]
     v = alist[l]
     j = l
     i = l + 1
@@ -47,7 +47,10 @@ def partition(alist, l, r):
 # 当数列近乎有序的时，由于每次选取的都是第一个数，所以造成数列分割的极其不等，此时快排蜕化成O(n^2) 的算法， 此时只要随机选取基准点即可
 # 当数列中包含大量的重复元素的时候，这一版的代码也会造成"分割不等“的问题，此时需要将重复元素均匀的分散的自数列旁
 # 使用三路快排
-l = generateRandomArray(100, 1, 1000)
+l = generateRandomArray(10, 1, 1000)
+# print(l)
+# print(partition(l, 1, 5))
+# print(l)
 print("before sort:", l)
 ret = quickSort(l)
 print("sorted:", ret)
