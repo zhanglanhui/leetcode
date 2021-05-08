@@ -9,15 +9,15 @@ from utils import *
 # 第二次遍历使次大项归位。这个过程持续进行，一共需要 n-1 次遍历来排好 n 个数 据，因为最后一个数据必须在第 n-1 次遍历之后才能归位。
 
 # 选择排序
-def selectionSort(alist):
-    size = len(alist)
-    for i in range(0, size):
-        min_ind, min_val = i, alist[i]
+def selectionSort(nums):
+    size = len(nums)
+    for i in range(size):
+        min_ind, min_val = i, nums[i]
         for j in range(i, size):
-            if alist[j] < min_val:
-                min_ind, min_val = j, alist[j]
-        alist[i], alist[min_ind] = min_val, alist[i]
-    return alist
+            if nums[j] < min_val:
+                min_ind, min_val = j, nums[j]
+        nums[i], nums[min_ind] = min_val, nums[i]
+    return nums
 
 
 l = generateRandomArray(100, 1, 1000)
