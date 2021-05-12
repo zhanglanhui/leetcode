@@ -4,10 +4,8 @@ import timeit
 
 
 def generateRandomArray(n, min, max):
-    arr = []
-    arr = [randint(min, max) for x in range(n)]
+    arr = [randint(min, max) for _ in range(n)]
     return arr
-
 
 def generateNearlyOrderedArray(n, swapTimes):
     arr = []

@@ -8,39 +8,31 @@ from utils import *
 # 从数列中挑出一个元素，称为"基准"（pivot）。
 # 重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（相同的数可以到任何一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
 # 递归地（recursively）把小于基准值元素的子数列和大于基准值元素的子数列排序。
-def quickSort(alist):
-    n = len(alist)
-    __quickSort(alist, 0, n - 1)
-    return alist
+# TODO:标准代码
+def quickSort(nums):
+    randomized_quicksort(nums, 0, len(nums) - 1)
+    return nums
 
 
-def __quickSort(alist, l, r):
-    # 当数列的大小比较小的时候，数列近乎有序的概率较大
-    # if (r - l <= 15):
-    #     insertionSortHelp(alist, l, r)
-    #     return
-    if l >= r:
+def randomized_quicksort(nums, low, high):
+    if low >= high:
         return
-    # p = partition(alist, l, r)
-    p = partition(alist, l, r)
-    __quickSort(alist, l, p - 1)
-    __quickSort(alist, p + 1, r)
+    pivot = randomized_partition(nums, low, high)
+    randomized_quicksort(nums, low, pivot - 1)
+    randomized_quicksort(nums, pivot + 1, high)
 
 
-# 在alist[l...r]中寻找j,使得alist[l...j] <= alist[l], alist[j+1...r] >alist[l]
-def partition(alist, l, r):
-    pivot = randint(l, r)
-    alist[pivot], alist[l] = alist[l], alist[pivot]
-    v = alist[l]
-    j = l
-    i = l + 1
-    while i <= r:
-        if alist[i] <= v:
-            alist[j + 1], alist[i] = alist[i], alist[j + 1]
-            j += 1
-        i += 1
-    alist[l], alist[j] = alist[j], alist[l]
-    return j
+# 在nums[l...r]中寻找j,使得nums[l...j] <= nums[l], nums[j+1...r] >nums[l]
+def randomized_partition(nums, low, high):
+    pivot = randint(low, high)
+    nums[pivot], nums[high] = nums[high], nums[pivot]
+    i = low
+    for j in range(low, high):
+        if nums[j] < nums[high]:
+            nums[j], nums[i] = nums[i], nums[j]
+            i += 1
+    nums[i], nums[high] = nums[high], nums[i]
+    return i
 
 
 # 快速排序一些可以优化的点:

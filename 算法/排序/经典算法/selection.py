@@ -9,6 +9,7 @@ from utils import *
 # 第二次遍历使次大项归位。这个过程持续进行，一共需要 n-1 次遍历来排好 n 个数 据，因为最后一个数据必须在第 n-1 次遍历之后才能归位。
 
 # 选择排序
+# TODO:标准代码
 def selectionSort(nums):
     size = len(nums)
     for i in range(size):

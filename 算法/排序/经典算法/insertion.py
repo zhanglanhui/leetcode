@@ -30,15 +30,16 @@ def insertionSort(alist):
 
 
 # 插入排序（示例代码）
-def insertionSort2(alist):
-    for i in range(1, len(alist)):
-        currentvalue = alist[i]
-        position = i
-        while alist[position - 1] > currentvalue and position > 0:
-            alist[position] = alist[position - 1]
-            position = position - 1
-        alist[position] = currentvalue
-    return alist
+# TODO:标准代码
+def insertionSort2(nums):
+    for i in range(1, len(nums)):
+        value = nums[i]
+        pos = i
+        while nums[pos - 1] > value and pos > 0:
+            nums[pos] = nums[pos - 1]
+            pos -= 1
+        nums[pos] = value
+    return nums
 
 
 l = generateRandomArray(10, 1, 1000)

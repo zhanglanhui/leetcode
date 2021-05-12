@@ -9,30 +9,25 @@ from utils import *
 # 我们并不是将原始列表分成含有连续元素的子列，而是确定一个划分列表的增量 “i”，这个i更准确地说，是划分的间隔。
 # 然后把每间隔为i的所有元素选出来组成子列表，然后对每个子序列进行插入排序，最后当 i=1 时，对整体进行一次直接插入排序。
 
+
 # 希尔排序(缩小增量排序)
-def shellSort(alist):
-    n = len(alist)
-    gap = n // 2
+# TODO:标准代码
+def shellSort(nums):
+    size = len(nums)
+    gap = size // 2
     while gap > 0:
-        for i in range(gap):
-            gapInsetionSort(alist, i, gap)
-        gap = gap // 2
-    return alist
+        for i in range(gap, size):
+            j, tmp = i, nums[i]
+            # j - step就是代表与它同组隔壁的元素
+            while j - gap >= 0 and nums[j - gap] > tmp:
+                nums[j] = nums[j - gap]
+                j -= gap
+            nums[j] = tmp
+        gap //= 2
+    return nums
 
 
-# start子数列开始的起始位置， gap表示间隔
-def gapInsetionSort(alist, startpos, gap):
-    # 希尔排序的辅助函数
-    for i in range(startpos + gap, len(alist), gap):
-        position = i
-        currentvalue = alist[i]
-        while position > startpos and alist[position - gap] > currentvalue:
-            alist[position] = alist[position - gap]
-            position = position - gap
-        alist[position] = currentvalue
-
-
-l = generateRandomArray(10, 1, 1000)
+l = generateRandomArray(100, 1, 10000)
 print("before sort:", l)
 ret = shellSort(l)
 print("sorted:", ret)

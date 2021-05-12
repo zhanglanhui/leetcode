@@ -34,22 +34,22 @@ def bubbleSort2(arr):
 # 它可以做一些大多数排序方法做不到的事。尤其是如果在整个排序过程中没有交换，
 # 我们就可断定列表已经排好。因此可改良冒泡排序，使其在已知列表排好的情况下提前结束。
 # 这就是说，如果一个列表只需要几次遍历就可排好，冒泡排序就占有优势：它可以在发现列表已排好时立刻结束。
-def bubbleSort3(arr):
-    size = len(arr)
-    for i in range(size - 1, 0, -1):
+# TODO:标准代码
+def bubbleSort3(nums):
+    for i in range(len(nums) - 1, 0, -1):
         exchange = False
-        for j in range(0, i):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+        for j in range(i):
+            if nums[j] > nums[j + 1]:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
                 exchange = True
         if not exchange:
             break
-    return arr
+    return nums
 
 
 def bubbleSort4(arr):
     for i in range(0, len(arr)):
-        for j in range(len(arr)-1, i, -1):
+        for j in range(len(arr) - 1, i, -1):
             if arr[j - 1] > arr[j]:
                 arr[j], arr[j - 1] = arr[j - 1], arr[j]
     return arr
