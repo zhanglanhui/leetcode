@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 from typing import List
 import functools
-
-
+from functools import reduce
 
 
 # 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
@@ -30,6 +29,27 @@ import functools
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        pass
+        def backtrack(tmp, start):
+            sum_num = sum(tmp) if tmp else 0
+            if sum_num == target:
+                ans.add(tuple(tmp[:]))
+                return
+            if sum_num > target:
+                return
+            for ind, x in enumerate(candidates[start::]):
+                if sum_num + x > target:
+                    continue
+                tmp.append(x)
+                backtrack(tmp, ind + start + 1)
+                tmp.pop()
 
-print(Solution().permuteUnique([1, 1, 2]))
+        if sum(candidates) < target: return []
+        if sum(candidates) == target: return [candidates]
+        candidates.sort()
+        ans = set()
+        start = 0
+        backtrack([], start)
+        return [list(x) for x in ans]
+
+
+print(Solution().combinationSum2([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 27))
