@@ -54,4 +54,5 @@ class Solution2:
                 start, end = left2, right2
         return s[start: end + 1]
 
+
 print(Solution1().longestPalindrome("aua"))

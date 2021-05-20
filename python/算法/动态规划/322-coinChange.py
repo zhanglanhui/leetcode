@@ -65,4 +65,22 @@ class Solution2:
         return dp[amount] if dp[amount] != float('inf') else -1
 
 
-print(Solution2().coinChange(coins=[1, 2, 5], amount=210))
+class Solution3:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if amount == 0: return 0
+        dp = [0] * (amount + 1)
+        coins_set = set(coins)
+        min_coin = min(coins)
+        for i in range(amount + 1):
+            if i < min_coin:
+                dp[i] = -1
+                continue
+            if i in coins_set:
+                dp[i] = 1
+                continue
+            tmp = [dp[i - j] + 1 for j in coins if i >= j and dp[i - j] > 0]
+            dp[i] = min(tmp) if tmp else -1
+        return dp[amount]
+
+
+print(Solution3().coinChange(coins=[3, 5], amount=7))
