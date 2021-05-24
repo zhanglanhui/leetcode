@@ -4,4 +4,4 @@ project(cpp)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(cpp
-        ds/test1.cpp)
+        algo/dp/509-fib.cpp)

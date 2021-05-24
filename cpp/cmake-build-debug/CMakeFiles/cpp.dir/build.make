@@ -75,27 +75,27 @@ include CMakeFiles/cpp.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cpp.dir/flags.make
 
-CMakeFiles/cpp.dir/ds/test1.cpp.obj: CMakeFiles/cpp.dir/flags.make
-CMakeFiles/cpp.dir/ds/test1.cpp.obj: ../ds/test1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\My_Workspace\interview\leetcode\cpp\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp.dir/ds/test1.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp.dir\ds\test1.cpp.obj -c E:\My_Workspace\interview\leetcode\cpp\ds\test1.cpp
+CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj: CMakeFiles/cpp.dir/flags.make
+CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj: ../algo/dp/509-fib.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\My_Workspace\interview\leetcode\cpp\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\cpp.dir\algo\dp\509-fib.cpp.obj -c E:\My_Workspace\interview\leetcode\cpp\algo\dp\509-fib.cpp
 
-CMakeFiles/cpp.dir/ds/test1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp.dir/ds/test1.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\My_Workspace\interview\leetcode\cpp\ds\test1.cpp > CMakeFiles\cpp.dir\ds\test1.cpp.i
+CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\My_Workspace\interview\leetcode\cpp\algo\dp\509-fib.cpp > CMakeFiles\cpp.dir\algo\dp\509-fib.cpp.i
 
-CMakeFiles/cpp.dir/ds/test1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/ds/test1.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\My_Workspace\interview\leetcode\cpp\ds\test1.cpp -o CMakeFiles\cpp.dir\ds\test1.cpp.s
+CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\My_Workspace\interview\leetcode\cpp\algo\dp\509-fib.cpp -o CMakeFiles\cpp.dir\algo\dp\509-fib.cpp.s
 
 # Object files for target cpp
 cpp_OBJECTS = \
-"CMakeFiles/cpp.dir/ds/test1.cpp.obj"
+"CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj"
 
 # External object files for target cpp
 cpp_EXTERNAL_OBJECTS =
 
-cpp.exe: CMakeFiles/cpp.dir/ds/test1.cpp.obj
+cpp.exe: CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj
 cpp.exe: CMakeFiles/cpp.dir/build.make
 cpp.exe: CMakeFiles/cpp.dir/linklibs.rsp
 cpp.exe: CMakeFiles/cpp.dir/objects1.rsp

@@ -141,32 +141,32 @@ cpp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/build
 .PHONY : cpp/fast
 
-ds/test1.obj: ds/test1.cpp.obj
+algo/dp/509-fib.obj: algo/dp/509-fib.cpp.obj
 
-.PHONY : ds/test1.obj
+.PHONY : algo/dp/509-fib.obj
 
 # target to build an object file
-ds/test1.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/ds/test1.cpp.obj
-.PHONY : ds/test1.cpp.obj
+algo/dp/509-fib.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj
+.PHONY : algo/dp/509-fib.cpp.obj
 
-ds/test1.i: ds/test1.cpp.i
+algo/dp/509-fib.i: algo/dp/509-fib.cpp.i
 
-.PHONY : ds/test1.i
+.PHONY : algo/dp/509-fib.i
 
 # target to preprocess a source file
-ds/test1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/ds/test1.cpp.i
-.PHONY : ds/test1.cpp.i
+algo/dp/509-fib.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.i
+.PHONY : algo/dp/509-fib.cpp.i
 
-ds/test1.s: ds/test1.cpp.s
+algo/dp/509-fib.s: algo/dp/509-fib.cpp.s
 
-.PHONY : ds/test1.s
+.PHONY : algo/dp/509-fib.s
 
 # target to generate assembly for a file
-ds/test1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/ds/test1.cpp.s
-.PHONY : ds/test1.cpp.s
+algo/dp/509-fib.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cpp.dir\build.make CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.s
+.PHONY : algo/dp/509-fib.cpp.s
 
 # Help Target
 help:
@@ -177,9 +177,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... cpp
-	@echo ... ds/test1.obj
-	@echo ... ds/test1.i
-	@echo ... ds/test1.s
+	@echo ... algo/dp/509-fib.obj
+	@echo ... algo/dp/509-fib.i
+	@echo ... algo/dp/509-fib.s
 .PHONY : help
 
 

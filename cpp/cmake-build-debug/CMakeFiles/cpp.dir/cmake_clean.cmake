@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cpp.dir/ds/test1.cpp.obj"
+  "CMakeFiles/cpp.dir/algo/dp/509-fib.cpp.obj"
   "cpp.exe"
   "cpp.exe.manifest"
   "cpp.pdb"
