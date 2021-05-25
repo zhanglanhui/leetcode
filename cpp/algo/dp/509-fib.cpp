@@ -30,7 +30,7 @@ public:
             prev1 = ans;
         }
         return ans;
-    }
+    };
 };
 
 int main(int argc, char const *argv[]) {
