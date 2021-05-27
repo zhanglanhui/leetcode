@@ -17,6 +17,7 @@ import functools
 # 链接：https://leetcode-cn.com/problems/maximum-subarray
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+
 # 暴力
 # 超出时间限制
 class Solution1:
@@ -43,11 +44,23 @@ class Solution2:
             return sum(nums)
         ans = nums[0]
         for i in range(1, len(nums)):
-            if nums[i] + nums[i - 1] > nums[i]:
+            if nums[i - 1] > 0:
                 nums[i] = nums[i] + nums[i - 1]
             ans = max(ans, nums[i])
         print(nums)
         return ans
 
 
-print(Solution2().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+class Solution3:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) <= 1:
+            return sum(nums)
+        pre, ans = 0, nums[0]
+        for x in nums[1:]:
+            pre = max(pre + x, x)
+            print("pre",pre)
+            ans = max(ans, pre)
+        return ans
+
+
+print(Solution3().maxSubArray([-2, 1, -3 ,4]))
