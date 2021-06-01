@@ -24,6 +24,20 @@ class TreeNode:
         self.right = right
 
 
+class Solution1:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def balanced(root, size):
+            if not root: return size
+            size1 = balanced(root.left, size)
+            size2 = balanced(root.right, size)
+            if abs(size1 - size2) <= 1:
+                return max(size1, size2) + 1
+            return -100
+
+        if not root: return True
+        return balanced(root, 0) > 0
+
+
 class Solution:
     def isBalanced(self, root: TreeNode) -> bool:
         def ssss(rrr):

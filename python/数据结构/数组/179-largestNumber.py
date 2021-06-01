@@ -34,21 +34,12 @@ from functools import cmp_to_key
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
         def cmp1(x, y):
-            str_x = str(x)
-            str_y = str(y)
-            p1 = p2 = 0
-            while p1 < len(str_x) and p2 < len(str_y):
-                if str_x[p1] == str_y[p2]:
-                    p1 += 1
-                    p2 += 1
-                elif int(str_x[p1]) > int(str_y[p2]):
-                    return 1
-                else:
-                    return -1
-            return 1 if p1 == len(str_x) else -1
-
+            xy = x * 10 ** len(str(y)) + y
+            yx = y * 10 ** len(str(x)) + x
+            return 1 if xy > yx else -1
+        if not nums: return ""
         tt = sorted(nums, key=cmp_to_key(lambda a, b: cmp1(a, b)), reverse=True)
-        return "".join(map(str, tt))
+        return "".join(map(str, tt)) if tt[0]!=0 else "0"
 
 
 print(Solution().largestNumber([3, 30, 34, 5, 9]))
