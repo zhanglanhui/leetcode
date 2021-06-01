@@ -46,6 +46,7 @@ class Solution:
                     dfs(i, j)
         return island_num
 
+import collections
 # 广度优先搜索
 class Solution2:
     def numIslands(self, grid: List[List[str]]) -> int:
