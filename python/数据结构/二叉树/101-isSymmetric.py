@@ -44,3 +44,18 @@ class Solution:
             return False
 
         return check(root, root)
+
+
+class Solution2:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        def check(root1, root2):
+            tmp = [root1, root2]
+            while tmp:
+                l, r = tmp[0], tmp[1]
+                tmp = tmp[2:]
+                if not l and not r: continue
+                if (not l and r) or (l and not r) or (l.val != r.val): return False
+                tmp.extend([l.left, r.right, l.right, r.left])
+            return True
+
+        return check(root, root)

@@ -18,7 +18,20 @@ import functools
 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        pass
+        dp = [[0] * (len(grid[0])) for _ in range(len(grid))]
+        for i in range(0, len(grid)):
+            for j in range(0, len(grid[0])):
+                if i == 0:
+                    if j >= 1:
+                        dp[i][j] = dp[i][j - 1] + grid[i][j]
+                    else:
+                        dp[i][j] = grid[0][0]
+                else:
+                    if j >= 1:
+                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+                    else:
+                        dp[i][j] = dp[i - 1][j] + grid[i][j]
+        return dp[-1][-1]
 
 
 print(Solution().minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]]))

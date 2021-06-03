@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import random
 from typing import List
 import functools
 
@@ -18,38 +19,54 @@ import functools
 # 快排
 class Solution1:
     def findKthLargest(self, nums, k) -> int:
-        # 第k个最大的元素，即升序排列后，index为len(nums)-k
-        k = len(nums) - k
-        low = 0
-        high = len(nums) - 1
-        while low <= high:
-            p = self.patition(nums, low, high)
-            if k < p:
-                high = p - 1
-            elif k > p:
-                low = p + 1
-            else:
-                return nums[p]
-        return -1
+        def partition(nums, low, high):
+            if low >= high: return
+            tmp = random.randint(low, high)
+            nums[tmp], nums[high] = nums[high], nums[tmp]
+            i = low
+            for j in range(low, high):
+                if nums[j] > nums[high]:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+            nums[i], nums[high] = nums[high], nums[i]
+            return i
 
-    def patition(self, alist, low, high):
-        mid_value = alist[low]
-        while low < high:
-            while low < high and alist[high] >= mid_value:
-                high -= 1
-            alist[low] = alist[high]
+        def quick_sort(nums, low, high):
+            if low >= high: return
+            pivot = partition(nums, low, high)
+            if pivot == k - 1: return
+            quick_sort(nums, pivot + 1, high)
+            quick_sort(nums, low, pivot - 1)
+            # return nums[k - 1]
 
-            while low < high and alist[low] <= mid_value:
-                low += 1
-            alist[high] = alist[low]
-        alist[low] = mid_value
-        return low
+        quick_sort(nums, 0, len(nums) - 1)
+        return nums[k - 1]
 
 
-# 堆排序
+#### 堆排序，重要
 class Solution2:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        pass
+
+        def max_heapify(heap, root, heap_len):
+            p = root
+            while p * 2 + 1 < heap_len:
+                l, r = p * 2 + 1, p * 2 + 2
+                _next = l if heap_len <= r or heap[r] < heap[l] else r
+                if heap[p] < heap[_next]:
+                    heap[p], heap[_next] = heap[_next], heap[p]
+                    p = _next
+                else:
+                    break
+
+        def heapSort(nums: List[int]):
+            for i in range(len(nums) - 1, -1, -1):
+                max_heapify(nums, i, len(nums))
+            for i in range(len(nums) - 1, len(nums) - 1-k, -1):
+                nums[i], nums[0] = nums[0], nums[i]
+                max_heapify(nums, 0, i)
+
+        heapSort(nums)
+        return nums[len(nums)-k]
 
 
-print(Solution1().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))
+print(Solution2().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 3))

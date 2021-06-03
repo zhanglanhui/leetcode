@@ -34,29 +34,30 @@ print(t)
 from random import randint
 
 
-class Solution:
-    def sortArray(self, nums: List[int]) -> List[int]:
-        def randomized_partition(nums, low, high):
-            if low >= high: return
-            pivot = get_privot(nums, low, high)
-            randomized_partition(nums, low, pivot - 1)
-            randomized_partition(nums, pivot + 1, high)
-            return
-
-        def get_privot(nums, low, high):
-            p = randint(low, high)
-            nums[p], nums[high] = nums[high], nums[p]
-            i = low
-            for j in range(low, high):
-                if nums[j] < nums[high]:
-                    nums[i], nums[j] = nums[j], nums[i]
-                    i += 1
-            nums[i], nums[high] = nums[high], nums[i]
-            return i
-
-        if not nums: return nums
-        randomized_partition(nums, 0, len(nums) - 1)
-        return nums
+def heapSort(nums: List[int]) -> List[int]:
+    # build_heap
+    for i in range(len(nums) - 1, -1, -1):
+        max_heapify(nums, i, len(nums))
+    # sort_heap
+    for i in range(len(nums) - 1, -1, -1):
+        nums[i], nums[0] = nums[0], nums[i]
+        max_heapify(nums, 0, i)
+    return nums
 
 
-print(Solution().sortArray([5,4,3,2,1]))
+def max_heapify(heap, root, heap_len):
+    p = root
+    while p * 2 + 1 < heap_len:
+        l, r = p * 2 + 1, p * 2 + 2
+        if heap_len <= r or heap[r] < heap[l]:
+            _next = l
+        else:
+            _next = r
+        if heap[p] < heap[_next]:
+            heap[p], heap[_next] = heap[_next], heap[p]
+            p = _next
+        else:
+            break
+
+
+# print(Solution().sortArray([5, 4, 3, 2, 1]))
