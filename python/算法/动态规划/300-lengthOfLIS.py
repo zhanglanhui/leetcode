@@ -22,15 +22,35 @@ import functools
 # 动态规划
 class Solution1:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        if len(nums) <= 1:
-            return 1
-        dp = []
+        dp = [0] * len(nums)
         for i in range(len(nums)):
-            dp.append(1)
-            for j in range(i):
+            dp[i] = 1
+            for j in range(0, i):
                 if nums[i] > nums[j]:
                     dp[i] = max(dp[i], dp[j] + 1)
         return max(dp)
 
 
-print(Solution1().lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
+# 贪心
+class Solution2:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        tmp = []
+        for x in nums:
+            if not tmp or x > tmp[-1]:
+                tmp.append(x)
+            else:
+                left, right = 0, len(tmp) - 1
+                loc = len(tmp) - 1
+                while left <= right:
+                    mid = (left + right) // 2
+                    if tmp[mid] >= x:
+                        loc = mid
+                        right = mid - 1
+                    else:
+                        left = mid + 1
+                tmp[loc] = x
+                print(tmp)
+        return len(tmp)
+
+
+print(Solution2().lengthOfLIS([3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12]))

@@ -1,35 +1,60 @@
-# # i = 0
-# for i in range(0, 5):
-#     print("aaaa",i)
-#     i += 10
-#     print("bbbb",i)
-
-# import random
-# alist = [1,2,3,4,5]
-# def randoms():
-#     return 0.2
-# random.shuffle(alist,randoms)
-# print(alist)
-# !/usr/bin/python3
-from typing import List
-
-# a = [1, 2, 3, [4, 5, 6]]
-# b = a[:] # 与copy作用相同
-# b[3].append(7)
-# print("a:", a)
-# print("b:", b)
-# print("--------------------")
-# b.append(8)
-# print("a:", a)
-# print("b:", b)
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
-from collections import OrderedDict
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        stack = []
+        cur = head
+        while cur:
+            stack.append(cur)
+            cur = cur.next
+        cur = prev = ListNode(0)
+        p = head
+        change = False
+        time = 0
+        while time <= len(stack):
+            if change:
+                cur.next = stack.pop()
+            else:
+                cur.next = p
+                p = p.next
+            change = ~change
+            cur = cur.next
+            time += 1
+        cur.next = None
+        return prev.next
 
-t = OrderedDict()
-for x in range(0, 10):
-    t[x] = x
-print(t)
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        cur = prev = ListNode(-1000, head)
+        while cur.next:
+            tmp = cur.next
+            if tmp.val != cur.val:
+                cur = cur.next
+            else:
+                cur.next = tmp.next
+        return prev.next
+
 
 from random import randint
 
@@ -60,4 +85,38 @@ def max_heapify(heap, root, heap_len):
             break
 
 
-# print(Solution().sortArray([5, 4, 3, 2, 1]))
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        def isNumeralOrChar(s):
+            if 0 <= ord(s) - ord("0") <= 9 or 0 <= ord(s) - ord("a") <= 25 or 0 <= ord(s) - ord("A") <= 25:
+                return True
+            return False
+
+        p1, p2 = 0, len(s) - 1
+        while p1 < p2:
+            while p1 < p2 and not isNumeralOrChar(s[p1]):
+                p1 += 1
+            while p1 < p2 and not isNumeralOrChar(s[p2]):
+                p2 -= 1
+            if s[p1] == s[p2] or \
+                    ord(s[p1].lower()) - ord("a") == ord(s[p2].lower()) - ord("a"):
+                p1 += 1
+                p2 -= 1
+            else:
+                return False
+        return True
+
+
+print(Solution().isPalindrome("0P"))
