@@ -76,7 +76,37 @@ class Solution2:
             right -= 1
 
 
-
 nums = [2, 3, 1]
 Solution().nextPermutation(nums)
+print(nums)
+
+
+class Solution3:
+    def nextPermutation(self, nums: List[int]) -> None:
+        if not nums or len(nums) == 1: return
+        if len(nums) == 2:
+            nums[0], nums[1] = nums[1], nums[0]
+            return
+        size = len(nums)
+        i = size - 2
+        while i >= 0:
+            if nums[i] >= nums[i + 1]:
+                i -= 1
+            else:
+                break
+        if i >= 0:
+            j = size - 1
+            while j >= 0 and nums[j] <= nums[i]:
+                j -= 1
+            nums[j], nums[i] = nums[i], nums[j]
+        left, right = i + 1, size - 1
+        while left <= right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+        return
+
+
+nums = [2, 3, 1]
+Solution3().nextPermutation(nums)
 print(nums)

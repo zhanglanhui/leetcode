@@ -59,3 +59,47 @@ class Solution2:
                 return qqq
             qqq = father[qqq.val]
         return root
+
+
+# 递归法
+class Solution3:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def commonAncestor(r):
+            if not r or r == p or r == q: return r
+            left = commonAncestor(r.left)
+            right = commonAncestor(r.right)
+            if left and right:
+                return r
+            return left if left else right
+
+        return commonAncestor(root)
+
+
+# hash
+class Solution4:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        stack = [root]
+        father_hash = dict()
+        while stack:
+            stack_next = []
+            for x in stack:
+                if x.left:
+                    stack_next.append(x.left)
+                    father_hash[x.left]=x
+                if x.right:
+                    stack_next.append(x.right)
+                    father_hash[x.right] = x
+            stack=stack_next
+        tmp_q=q
+        qList=set()
+        while tmp_q:
+            qList.add(tmp_q)
+            tmp_q=father_hash.get(tmp_q,None)
+        tmp_p = p
+        while tmp_p:
+            if tmp_p in qList: return tmp_p
+            tmp_p = father_hash.get(tmp_p,None)
+        return None
+
+
+

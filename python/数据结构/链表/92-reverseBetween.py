@@ -34,35 +34,27 @@ class Solution:
             curr.next = prev
             prev = curr
             curr = _next
-        return head if left>1 else prev11.next
-
-
-
-
-
-
-
-
-
-
+        return head if left > 1 else prev11.next
 
 
 class Solution2:
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
-        pass
-        
+        def reverse(node, prev):
+            prev1 = prev
+            while node != prev1:
+                _next = node.next
+                node.next = prev
+                prev = node
+                node = _next
+            return prev
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if not head: return head
+        hair = ListNode(0, head)
+        prev, tail, cur = hair, head, head
+        for _ in range(left - 1):
+            cur = cur.next
+            prev = prev.next
+        for _ in range(right):
+            tail = tail.next
+        prev.next = reverse(cur, tail)
+        return hair.next

@@ -90,4 +90,29 @@ class Solution2:
         return -1
 
 
-print(Solution2().search([5, 1, 2, 3, 4], 4))
+class Solution3:
+    def search(self, nums: List[int], target: int) -> int:
+        size = len(nums)
+        left, right = 0, size - 1
+        while left <=  right:
+            mid = (left + right) >> 1
+            if nums[mid] == target:
+                return mid
+            if nums[left] == target:
+                return left
+            if nums[right] == target:
+                return right
+            elif nums[mid] > target:
+                if nums[mid] < nums[right] or (target > nums[left]):
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            elif nums[mid] < target:
+                if nums[left] <= nums[mid] or target < nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1
+
+
+print(Solution3().search([1], 1))

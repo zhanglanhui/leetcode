@@ -46,7 +46,10 @@ class Solution:
                     dfs(i, j)
         return island_num
 
+
 import collections
+
+
 # 广度优先搜索
 class Solution2:
     def numIslands(self, grid: List[List[str]]) -> int:
@@ -72,7 +75,36 @@ class Solution2:
         return num_islands
 
 
-
 print(Solution().numIslands(grid=
-    [["1","0","1","1","1"],["1","0","1","0","1"],["1","1","1","0","1"]]
-))
+                            [["1", "0", "1", "1", "1"], ["1", "0", "1", "0", "1"], ["1", "1", "1", "0", "1"]]
+                            ))
+
+
+# 20210617
+class Solution3:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        self.walk = set()
+        self.ans = 0
+
+        def dfs(i, j):
+            if i < 0 or i >= col or j < 0 or j >= row: return
+            self.walk.add((i, j))
+            if grid[i][j] == "0": return
+            for p, q in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
+                if (p, q) not in self.walk:
+                    dfs(p, q)
+            return
+
+        col, row = len(grid), len(grid[0])
+        for i in range(col):
+            for j in range(row):
+                if grid[i][j] == "1" and (i, j) not in self.walk:
+                    self.ans += 1
+                    dfs(i, j)
+        return self.ans
+
+
+print(Solution3().numIslands(grid=[  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"] ]))

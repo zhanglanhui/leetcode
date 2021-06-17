@@ -50,3 +50,19 @@ class Solution:
 
         _, f = ssss(rrr=root)
         return f
+
+
+# 20210617
+class Solution2:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def balanced(r):
+            if not r: return 0, True
+            height_left, balance_left = balanced(r.left)
+            height_right, balance_right = balanced(r.right)
+            if abs(height_left - height_right) > 1:
+                return 0, False
+            return max(height_left, height_right) + 1, balance_right and balance_left
+
+        if not root: return True
+        _, b = balanced(root)
+        return b
