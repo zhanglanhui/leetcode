@@ -55,4 +55,50 @@ class Solution2:
         return s[start: end + 1]
 
 
-print(Solution1().longestPalindrome("aua"))
+# 动态规划
+class Solution3:
+    def longestPalindrome(self, s: str) -> str:
+        if not s or len(s) == 1: return s
+        size = len(s)
+        dp = [[False] * size for _ in range(size)]
+        ans = s[0]
+        for i in range(size):
+            dp[i][i] = True
+        for i in range(size - 1):
+            if s[i] == s[i + 1]:
+                dp[i][i + 1] = True
+                ans = s[i:i + 2]
+        for win in range(2, size):
+            for j in range(0, size - win):
+                if dp[j + 1][j + win - 1] and s[j] == s[j + win]:
+                    dp[j][j + win] = True
+                    if win + 1 > len(ans): ans = s[j:j + win + 1]
+        return ans
+
+
+# 动态规划
+class Solution4:
+    def longestPalindrome(self, s: str) -> str:
+        def expandAroundCenter(i, j):
+            if i >= size or j >= size or s[i] != s[j]: return ""
+            left, right = i - 1, j + 1
+            while 0 <= left and right < size:
+                if s[left] == s[right]:
+                    left -= 1
+                    right += 1
+                else:
+                    break
+            return s[left + 1:right]
+
+        if not s or len(s) == 1: return s
+        size = len(s)
+        ans = s[0]
+        for i in range(size):
+            one = expandAroundCenter(i, i)
+            two = expandAroundCenter(i, i + 1)
+            ans = one if len(one) > len(ans) else ans
+            ans = two if len(two) > len(ans) else ans
+        return ans
+
+
+print(Solution4().longestPalindrome("abcbadd"))

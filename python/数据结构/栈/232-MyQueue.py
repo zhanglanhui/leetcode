@@ -41,6 +41,7 @@ class MyQueue:
             while self.s1:
                 self.s2.append(self.s1.pop())
         ans = self.s2.pop()
+        # 这块需要注意
         if not self.s2:
             while self.s1:
                 self.s2.append(self.s1.pop())
@@ -59,7 +60,7 @@ class MyQueue:
         """
         return len(self.s1) == 0 and len(self.s2) == 0
 
-    # Your MyQueue object will be instantiated and called as such:
+# Your MyQueue object will be instantiated and called as such:
 # obj = MyQueue()
 # obj.push(x)
 # param_2 = obj.pop()

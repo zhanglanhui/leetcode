@@ -35,3 +35,34 @@ class Solution:
             prev = curr
             curr = _next
         return head if left>1 else prev11.next
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution2:
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+        pass
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
