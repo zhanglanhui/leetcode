@@ -64,3 +64,36 @@ class Solution1:
 
 
 print(Solution1().sortList())
+
+
+class Solution2:
+    def sortList(self, head: ListNode) -> ListNode:
+        def merge(hair: ListNode, mid: ListNode):
+            dummy_node = p = ListNode(0)
+            p1, p2 = hair, mid
+            while p1 or p2:
+                if p1 or (p2 and p2.val < p1.val):
+                    p.next = p2
+                    p2 = p2.next
+                else:
+                    p.next = p1
+                    p1 = p1.next
+                p = p.next
+            return dummy_node.next
+
+        def merge_sort(hair, tail):
+            if not hair or hair == tail: return hair
+            if hair.next == tail:
+                hair.next = None
+                return hair
+            # 找到mid
+            slow, fast = hair, hair
+            while fast != tail:
+                slow = slow.next
+                fast = fast.next
+                if fast != tail:
+                    fast = fast.next
+            print(slow, fast)
+            return merge(merge_sort(hair, slow), merge_sort(slow, tail))
+
+        return merge_sort(head, None)
