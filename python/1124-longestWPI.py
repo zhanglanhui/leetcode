@@ -16,21 +16,23 @@ import functools
 # 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 
+# 前缀和+单调栈
 class Solution:
     def longestWPI(self, hours: List[int]) -> int:
 
         tttt = [1 if x > 8 else -1 for x in hours]
         presum = [0]
         for x in tttt: presum.append(presum[-1] + x)
+        print(presum)
         ans = 0
         stack = []
         # 顺序生成单调栈，栈中元素从第一个元素开始严格单调递减，最后一个元素肯定是数组中的最小元素所在位置
         for i in range(len(presum)):
             if not stack or presum[stack[-1]] > presum[i]:
                 stack.append(i)
+        print(stack)
         i = len(hours)
         while i > ans:
-            con
             while stack and presum[i] > presum[stack[-1]]:
                 ans = max(ans, i - stack[-1])
                 stack.pop()
@@ -38,4 +40,4 @@ class Solution:
         return ans
 
 
-print(Solution().longestWPI([6, 9, 9]))
+print(Solution().longestWPI( [9,9,6,0,6,6,9]))

@@ -21,10 +21,10 @@ class LRUCache(OrderedDict):
         self.capacity = capacity
 
     def get(self, key: int) -> int:
-        if key in self:
-            self.move_to_end(key)
-            return self.get(key)
-        return -1
+        if key not in self:
+            return -1
+        self.move_to_end(key)
+        return self[key]
 
     def put(self, key: int, value: int) -> None:
         if key in self:
@@ -43,8 +43,6 @@ obj.put(2, 2)
 obj.put(1, 1)
 param_1 = obj.get(3)
 print(param_1)
-
-
 
 
 # --------------------------------------
