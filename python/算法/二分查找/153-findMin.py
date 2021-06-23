@@ -31,4 +31,22 @@ class Solution:
                 lo = mid + 1
         return nums[lo]
 
-print(Solution().findMin([2,1]))
+
+print(Solution().findMin([2, 1]))
+
+
+class Solution2:
+    def findMin(self, nums: List[int]) -> int:
+        if not nums: return 0
+        left, right = 0, len(nums) - 1
+        while left < right:
+            if nums[left] < nums[right]: return nums[left]
+            mid = (left + right) >> 1
+            if nums[mid] >= nums[left]:
+                left = mid + 1
+            elif nums[mid] < nums[right]:
+                right = mid
+        return nums[left]
+
+
+print(Solution2().findMin([3, 4, 5, 1, 2]))

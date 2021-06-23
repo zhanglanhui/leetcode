@@ -45,3 +45,48 @@ class Solution:
             time += 1
         p.next = None
         return prev.next
+
+
+class Solution2:
+    def reorderList(self, head: ListNode) -> None:
+        def get_half_list(h):
+            if not h or not h.next: return h
+            prev = ListNode(0, h)
+            p, p1, p2 = prev, h, h
+            while p2:
+                p = p.next
+                p1 = p1.next
+                p2 = p2.next
+                if p2:
+                    p2 = p2.next
+            return p, p1
+
+        def reverse(curr):
+            prev = None
+            while curr:
+                _next = curr.next
+                curr.next = prev
+                prev = curr
+                curr = _next
+            return prev
+
+        def merge(h1, h2):
+            p1, p2 = h1, h2
+            prev1 = prev = ListNode(0)
+            flag = True
+            while p1 or p2:
+                if flag:
+                    prev.next = p1
+                    p1 = p1.next
+                else:
+                    prev.next = p2
+                    p2 = p2.next
+                flag = not flag
+                prev = prev.next
+            prev.next = None
+            return prev1.next
+
+        mid1, mid2 = get_half_list(head)
+        mid1.next = None
+        mid2 = reverse(mid2)
+        head = merge(head, mid2)

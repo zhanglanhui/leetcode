@@ -84,3 +84,22 @@ class Solution3:
 
 
 print(Solution3().coinChange(coins=[3, 5], amount=7))
+
+
+# 动态规划
+class Solution4:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if not amount: return 0
+        if not coins or amount < min(coins): return -1
+        dp = [-1] * (amount + 1)
+        for i in coins:
+            if i <= amount:
+                dp[i] = 1
+        for i in range(1, amount + 1):
+            if dp[i] > 0: continue
+            tmp = [dp[i - j] + 1 for j in coins if i >= j and dp[i - j] >= 0]
+            dp[i] = min(tmp) if tmp else -1
+        return dp[-1]
+
+
+print("Solution4", Solution4().coinChange(coins=[2], amount=1))

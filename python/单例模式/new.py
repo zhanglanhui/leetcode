@@ -9,8 +9,15 @@ class Singleton(object):
 class MyClass(Singleton):
     a = 1
 
+    def __init__(self, *args, **kw):
+        self.GG = [x for x in args]
+
+    def getG(self):
+        return self.GG
+
 
 c1 = MyClass()
 c2 = MyClass()
 
 print(id(c1) == id(c2))
+# print(c2.GG)

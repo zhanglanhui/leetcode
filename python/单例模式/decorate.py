@@ -11,11 +11,16 @@ def singleton(cls):
 
 @singleton
 class MyClass(object):
-    def __init__(self):
-        pass
+    def __init__(self, *args, **kw):
+        self.GG = [x for x in args]
+
+    def getG(self):
+        return self.GG
 
 
-c1 = MyClass()
-c2 = MyClass()
+c1 = MyClass(1, doc=1)
+c2 = MyClass(2, doc=3)
+
 
 print(id(c1) == id(c2))
+print(c2)

@@ -29,3 +29,22 @@ class Solution1:
 
 
 print(Solution1().longestConsecutive([100, 4, 200, 1, 3, 2]))
+
+
+# hash
+class Solution2:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums: return 0
+        num_set = set(nums)
+        max_len = 1
+        for num in nums:
+            print(type(num))
+            if num - 1 not in num_set:
+                tmp = num
+                while tmp in num_set:
+                    tmp += 1
+                max_len = max(max_len, tmp - num)
+        return max_len
+
+
+print(Solution2().longestConsecutive([-1, 0]))
