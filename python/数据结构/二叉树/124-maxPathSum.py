@@ -40,3 +40,18 @@ class Solution:
         self.ans = -1000000
         post_path(root)
         return self.ans
+
+
+class Solution2:
+    def maxPathSum(self, root: TreeNode) -> int:
+        self.ans = -float('inf')
+
+        def dfs(r: TreeNode):
+            if not r: return 0
+            left = max(dfs(r.left), 0)
+            right = max(dfs(r.right), 0)
+            self.ans = max(self.ans, left + right + r.val)
+            return r.val + max(left, right)
+
+        dfs(root)
+        return int(self.ans)

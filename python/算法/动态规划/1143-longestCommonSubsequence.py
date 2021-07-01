@@ -71,5 +71,18 @@ class Solution2:
         return dp[m][n]
 
 
-
 print(Solution().longestCommonSubsequence("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))
+
+
+class Solution3:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        if not text1 or not text2: return 0
+        size1, size2 = len(text1), len(text2)
+        dp = [[0] * (size1 + 1) for _ in range(size2 + 1)]
+        for j in range(1, len(dp[0])):
+            for i in range(1, len(dp)):
+                dp[i][j] = dp[i - 1][j - 1] + 1 if text1[j - 1] == text2[i - 1] else max(dp[i][j - 1], dp[i - 1][j])
+        return dp[-1][-1]
+
+
+print(Solution3().longestCommonSubsequence("pmjghexybyrgzczy", "hafcdqbgncrcbihkd"))

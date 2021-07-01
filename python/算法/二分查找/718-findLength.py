@@ -45,38 +45,32 @@ class Solution1:
 
 # 窗口解法
 class Solution2:
-    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
-        def compare(ind1, ind2, length):
-            ret = i = 0
-            while i < length:
-                if nums1[ind1 + i] != nums2[ind2 + i] and ret > 0:
-                    break
-                if nums1[ind1 + i] != nums2[ind2 + i] and ret == 0:
-                    ind2 += 1
-                    length -= 1
-                    ret += 1
-                    continue
-                i += 1
-                ret += 1
+    def findLength(self, A: List[int], B: List[int]) -> int:
+        def maxLength(addA: int, addB: int, length: int) -> int:
+            ret = k = 0
+            for i in range(length):
+                if A[addA + i] == B[addB + i]:
+                    k += 1
+                    ret = max(ret, k)
+                else:
+                    k = 0
             return ret
 
-        set1, set2 = set(nums1), set(nums2)
-        if not set1.intersection(set2):
-            return 0
+        n, m = len(A), len(B)
         ret = 0
-        l1, l2 = len(nums1), len(nums2)
-        for i in range(l1):
-            length = min(l2, l1 - i)
-            ret = max(ret, compare(i, 0, length))
-        for i in range(l2):
-            length = min(l1, l2 - i)
-            ret = max(ret, compare(0, i, length))
+        for i in range(n):
+            length = min(m, n - i)
+            ret = max(ret, maxLength(i, 0, length))
+        for i in range(m):
+            length = min(n, m - i)
+            ret = max(ret, maxLength(0, i, length))
         return ret
 
+    # # 动态规划
 
-# # 动态规划
+
 # class Solution2:
 #     def findLength(self, nums1: List[int], nums2: List[int]) -> int:
 
 
-print(Solution2().findLength([0, 0, 0, 0, 1], [1, 0, 0, 0, 0]))
+print(Solution1().findLength([7, 0, 1, 2, 3], [4, 5, 1, 2, 3]))

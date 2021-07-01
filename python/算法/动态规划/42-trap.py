@@ -56,9 +56,50 @@ class Solution3:
                 last_height = max(last_height, height[stack[-1]])
                 stack.pop()
             if not stack or num < height[stack[-1]]:
-                if stack: ans += (i - stack[-1] - 1) * (num - last_height)
+                if stack:
+                    ans += (i - stack[-1] - 1) * (num - last_height)
                 stack.append(i)
         return ans
 
 
-print(Solution3().trap([4, 2, 0, 3, 2, 5]))
+print("Solution3", Solution3().trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+
+
+# 单调栈
+class Solution4:
+    def trap(self, height: List[int]) -> int:
+        # pass
+        if not height: return 0
+        stack, ans = [], 0
+        for i, num in enumerate(height):
+            if num == 0: continue
+            max_height = 0
+            while stack and num >= height[stack[-1]]:
+                ans += (i - stack[-1] - 1) * (height[stack[-1]] - max_height)
+                max_height = max(max_height, height[stack[-1]])
+                stack.pop()
+            if not stack or num < height[stack[-1]]:
+                if stack:
+                    ans += (i - stack[-1] - 1) * (num - max_height)
+                stack.append(i)
+        return ans
+
+
+print("Solution4", Solution4().trap([4, 2, 0, 3, 2, 5]))
+
+
+class Solution5:
+    def trap(self, height: List[int]) -> int:
+        left_max = []
+        right_max = []
+        for num in height:
+            left_max.append(max(left_max[-1], num) if left_max else num)
+        for num in height[::-1]:
+            right_max.append(max(right_max[-1], num) if right_max else num)
+        ans = 0
+        for i, num in enumerate(height):
+            ans += max(0, min(left_max[i], right_max[i]) - num)
+        return ans
+
+
+print("Solution5", Solution5().trap([4, 2, 0, 3, 2, 5]))

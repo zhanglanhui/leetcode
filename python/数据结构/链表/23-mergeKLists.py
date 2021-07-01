@@ -45,22 +45,20 @@ class Solution:
                 else:
                     p3.next = p1
                     p1 = p1.next
-                p3=p3.next
+                p3 = p3.next
             return head.next
 
-        headdd = ListNode(0)
         size = len(lists)
-        if size == 0: return headdd.next
+        if size == 0: return None
         if size <= 1: return lists[0]
-        sss = size
-        tmp22 = lists
-        while sss > 1:
+        tmp_list = lists
+        while size > 1:
             tmp = []
-            for i in range(0, sss, 2):
-                if i + 1 >= sss:
-                    tmp.append(tmp22[i])
+            for i in range(0, size, 2):
+                if i + 1 >= size:
+                    tmp.append(tmp_list[i])
                     continue
-                tmp.append(mergeTwoList(tmp22[i], tmp22[i + 1]))
-            tmp22 = tmp
-            sss = len(tmp22)
-        return tmp22[0]
+                tmp.append(mergeTwoList(tmp_list[i], tmp_list[i + 1]))
+            tmp_list = tmp
+            size = len(tmp_list)
+        return tmp_list[0]

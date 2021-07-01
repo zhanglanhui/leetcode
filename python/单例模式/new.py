@@ -21,3 +21,8 @@ c2 = MyClass()
 
 print(id(c1) == id(c2))
 # print(c2.GG)
+
+
+
+
+
