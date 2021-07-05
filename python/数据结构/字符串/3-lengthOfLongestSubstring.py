@@ -36,13 +36,32 @@ class Solution2:
         left, max_len, cur_len = 0, 0, 0
         for c in s:
             cur_len += 1
-            while c in lookup:
+            if c in lookup:
                 lookup.remove(s[left])
                 left += 1
                 cur_len -= 1
+                continue
             if cur_len > max_len: max_len = cur_len
             lookup.add(c)
         return max_len
 
 
-print(Solution2().lengthOfLongestSubstring("au"))
+print(Solution2().lengthOfLongestSubstring("auag"))
+
+
+# 优化1：利用双指针
+class Solution3:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if not s: return 0
+        p, ans = 0, 1
+        lookup = dict()
+        for ind, x in enumerate(s):
+            if x in lookup and lookup[x] >= p:
+                p = lookup[x] + 1
+                lookup.pop(x)
+            lookup[x] = ind
+            ans = max(ans, ind - p + 1)
+        return ans
+
+
+print(Solution3().lengthOfLongestSubstring("abcabcbb"))
