@@ -49,8 +49,32 @@ class Solution2:
                     else:
                         left = mid + 1
                 tmp[loc] = x
-                print(tmp)
         return len(tmp)
 
 
+print(Solution1().lengthOfLIS([3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12]))
 print(Solution2().lengthOfLIS([3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12]))
+
+
+class Solution3:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums: return 0
+        stack = []
+        for num in nums:
+            if not stack or num > stack[-1]:
+                stack.append(num)
+            else:
+                left, right = 0, len(stack) - 1
+                cut = 0
+                while left <= right:
+                    mid = (left + right) >> 1
+                    if num <= stack[mid]:
+                        cut = mid
+                        right = mid - 1
+                    else:
+                        left = mid + 1
+                stack[cut] = num
+        return len(stack)
+
+
+print(Solution3().lengthOfLIS([3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12]))

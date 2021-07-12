@@ -90,3 +90,28 @@ class Solution2:
         mid1.next = None
         mid2 = reverse(mid2)
         head = merge(head, mid2)
+
+
+class Solution3:
+    def reorderList(self, head: ListNode) -> None:
+        if not head or not head.next: return
+        stack = []
+        p = head
+        while p:
+            stack.append(p.val)
+            p = p.next
+        prev = pp = ListNode(0)
+        exchange = True
+        tmp = len(stack)
+        time = 0
+        while time <= tmp:
+            if exchange:
+                pp.next = head
+                head = head.next
+            else:
+                pp.next = ListNode(stack.pop(), None)
+            pp = pp.next
+            exchange = not exchange
+            time += 1
+        pp.next = None
+        return prev.next

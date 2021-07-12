@@ -39,3 +39,18 @@ class Solution:
         post_path(root.left)
         post_path(root.right)
         return self.ans - 1
+
+
+class Solution2:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.ans = 0
+
+        def dfs(r):
+            if not r: return 0
+            left = dfs(r.left)
+            right = dfs(r.right)
+            self.ans = max(self.ans, left + right)
+            return max(left, right) + 1
+
+        dfs(root)
+        return self.ans
