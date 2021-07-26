@@ -69,7 +69,7 @@ class Solution2:
         return nums[len(nums) - k]
 
 
-print(Solution2().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 3))
+print(Solution2().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 5))
 
 
 # 快排
@@ -99,7 +99,7 @@ class Solution3:
         return nums[k - 1]
 
 
-print(Solution3().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 3))
+print(Solution3().findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 5))
 
 
 class Solution4:

@@ -35,3 +35,15 @@ class Solution:
         while k < 40:
             k = 7 * (rand7() - 1) + rand7()
         return (k - 39)
+
+
+
+class Solution2:
+    def rand10(self):
+        """
+        :rtype: int
+        """
+        k = 41
+        while k > 40:
+            k = 7 * (rand7() - 1) + rand7()
+        return 1+(k - 1)//4

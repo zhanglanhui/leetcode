@@ -48,8 +48,7 @@ class Solution2:
                 right = mid
             else:
                 left = mid + 1
-
         return left
 
 
-print(Solution2().kthSmallest(matrix=[[1, 5, 9], [10, 11, 13], [12, 13, 15]], k=8))
+print(Solution2().kthSmallest(matrix=[[1, 5, 9], [13, 14, 17], [15, 15, 15]], k=4))

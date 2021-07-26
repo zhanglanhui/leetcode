@@ -47,7 +47,7 @@ class Solution2:
             if nums[i - 1] > 0:
                 nums[i] = nums[i] + nums[i - 1]
             ans = max(ans, nums[i])
-        print(nums)
+        # print(nums)
         return ans
 
 
@@ -55,12 +55,12 @@ class Solution3:
     def maxSubArray(self, nums: List[int]) -> int:
         if len(nums) <= 1:
             return sum(nums)
-        pre, ans = 0, nums[0]
-        for x in nums[1:]:
+        pre, ans = 0, -float('inf')
+        for x in nums :
             pre = max(pre + x, x)
-            print("pre",pre)
+            # print("pre",pre)
             ans = max(ans, pre)
-        return ans
+        return int(ans)
 
-
-print(Solution3().maxSubArray([-2, 1, -3 ,4]))
+print(Solution2().maxSubArray([-2, 1, 0 ,4,-4,5]))
+print(Solution3().maxSubArray([-2, 1, 0 ,4,-4,5]))
