@@ -50,7 +50,7 @@ class Solution2:
         while True:
             step_len = max_tmp = 0
             for j in range(1, nums[i] + 1):
-                if i + j >= size-1:
+                if i + j >= size - 1:
                     return step + 1
                 if j + nums[j + i] > max_tmp:
                     max_tmp = j + nums[j + i]
@@ -62,4 +62,37 @@ class Solution2:
         return step
 
 
-print(Solution2().jump([2, 3, 1]))
+print(Solution2().jump([10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 0]))
+
+
+# 贪心
+class Solution3:
+    def jump(self, nums: List[int]) -> int:
+        def max_indx(num, i, j):
+            if i >= j:
+                return i
+            # out = i
+            step_len = 0
+            max_num = num[i] + step_len
+            for k, x in enumerate(num[i + 1:j]):
+                dd = x + k
+                if dd >= max_num:
+                    max_num, step_len = dd, k + 1
+            return step_len + i
+
+        if len(nums) <= 1:
+            return 0
+        i = 0
+        step = 1
+        while i + nums[i] < len(nums) - 1:
+            ii = max_indx(nums, i, i + nums[i] + 1)
+            if ii == i:
+                i += nums[i]
+            else:
+                i = ii
+            # print(i)
+            step += 1
+        return step
+
+
+print(Solution3().jump(  [2,3,1,1,4]))

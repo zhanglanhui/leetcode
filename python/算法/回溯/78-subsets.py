@@ -42,3 +42,31 @@ class Solution:
 
 
 print(Solution().subsets(nums=[1, 2, 3]))
+
+
+class Solution1:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(num, l, h):
+            # print(h)
+            # if h==len(nums):
+            #
+            if len(num) >= h:
+                out.append(list(num))
+                return
+            # if
+            for i, x in enumerate(nums[l:]):
+                if x in num:
+                    continue
+                num.append(x)
+                backtrack(num, i + l, h)
+                num.pop()
+
+        # tmp = []
+        out = []
+        for x in range(0, len(nums)):
+            backtrack([], 0, x)
+        out.append(nums)
+        return out
+
+
+print(Solution1().subsets(nums=[1, 2, 3, 4]))
