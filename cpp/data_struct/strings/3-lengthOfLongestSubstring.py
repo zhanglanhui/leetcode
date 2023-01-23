@@ -46,3 +46,49 @@ class Solution2:
 
 
 print(Solution2().lengthOfLongestSubstring("au"))
+
+
+# dict
+class Solution3:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        size = len(s)
+        if size <= 1: return size
+        lo, hi = 0, 0
+        pos_dic = dict()
+        pos_dic[s[0]] = 0
+        ans = 0
+        for i, x in enumerate(s[1:]):
+            if x not in pos_dic:
+                pos_dic[x] = i + 1
+                hi += 1
+            else:
+                lo = max(lo, pos_dic[x] + 1)
+                # if lo >= hi:
+                hi += 1
+                # hi = max(hi, lo + 1)
+                pos_dic[x] = i + 1
+            # print(hi, lo,x)
+            ans = max(ans, hi - lo + 1)
+        return ans
+
+
+print(Solution3().lengthOfLongestSubstring("pwwkew"))
+
+
+# dict
+class Solution4:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        size = len(s)
+        if size <= 1: return size
+        lo = 0
+        pos_dic = dict()
+        ans = 1
+        for i, x in enumerate(s):
+            if x in pos_dic:
+                lo = max(lo, pos_dic[x] + 1)
+            pos_dic[x] = i
+            ans = max(ans, i - lo + 1)
+        return ans
+
+
+print(Solution4().lengthOfLongestSubstring("pwwkew"))
